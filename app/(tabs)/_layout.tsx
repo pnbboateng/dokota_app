@@ -14,6 +14,7 @@ const _Layout = () => {
   if (!fontsLoaded) {
     return null; // Prevent rendering until fonts load
   }
+
   return (
     <Tabs
       screenOptions={{
