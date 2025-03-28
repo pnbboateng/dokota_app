@@ -38,9 +38,13 @@ const _Layout = () => {
           height: 80,
           position: "absolute",
 
-          overflow: "hidden",
           marginHorizontal: 10,
           marginBottom: 20,
+          shadowColor: "black",
+          shadowOffset: { width: 1, height: 5 },
+          shadowOpacity: 0.3,
+          shadowRadius: 5,
+          elevation: 5, // For Android
         },
       }}
     >
