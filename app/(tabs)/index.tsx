@@ -10,6 +10,7 @@ import {
   Animated,
   Dimensions,
   Platform,
+  StyleSheet,
 } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import Entypo from "@expo/vector-icons/Entypo";
@@ -40,6 +41,32 @@ const views = [
     image: require("../../assets/images/Healthcare.png"),
   },
 ];
+
+const styles = StyleSheet.create({
+  tinyLogo: {
+    width: 75,
+    height: 65,
+  },
+  doctor: {
+    width: "100%",
+    height: "100%",
+  },
+  icons: {
+    width: 70,
+    height: 70,
+  },
+  carouselicons: {
+    width: 70,
+    height: 60,
+    position: "absolute",
+    bottom: 8,
+    right: 8,
+  },
+  doctorprofilepic: {
+    width: "100%",
+    height: "100%",
+  },
+});
 
 const totalViews = views.length;
 const duplicatedViews = [...views, ...views];
@@ -81,14 +108,14 @@ export default function Index() {
     >
       <StatusBar style="dark" />
 
-      <View className="z-20 flex-row justify-between px-2">
+      <View className="z-20 flex-row justify-between items-center px-2">
         <TouchableOpacity className="">
           <Entypo name="menu" size={28} color="black" />
         </TouchableOpacity>
-        <View className="items-center justify-center -mt-8">
+        <View className="items-center justify-center ">
           <Image
+            style={styles.tinyLogo}
             source={require("../../assets/images/logo.png")}
-            className="w-40 h-24"
             resizeMode="contain"
           />
         </View>
@@ -104,10 +131,10 @@ export default function Index() {
         showsVerticalScrollIndicator={false}
       >
         <View className="w-[calc(100%-16px)] bg-red-900 h-40 mx-2 rounded-2xl flex flex-row ">
-          <View className="w-[60%] flex flex-col px-3 py-9">
+          <View className="w-[60%] flex flex-col pl-3 py-9 justify-start">
             <Text
               style={{ fontFamily: "Poppins-Bold" }}
-              className="text-slate-100 text-3xl"
+              className="text-slate-100 text-2xl"
             >
               Hello, {name}!
             </Text>
@@ -115,10 +142,11 @@ export default function Index() {
               How are you feeling today?
             </Text>
           </View>
-          <View>
+          <View className="flex w-full h-full flex-1 ml-auto">
             <Image
+              style={styles.doctor}
               source={require("../../assets/images/Doctor.png")}
-              className="w-44 h-40 mr-2"
+              className=""
               resizeMode="contain"
             />
           </View>
@@ -127,8 +155,9 @@ export default function Index() {
         <ScrollView
           className="flex flex-row overflow-x-scroll mt-6"
           horizontal={true}
+          contentContainerStyle={{ flexGrow: 1 }}
           showsHorizontalScrollIndicator={false}
-          style={{ maxHeight: 145, overflow: "visible" }}
+          style={{ maxHeight: 160 }}
         >
           <TouchableOpacity
             style={{ elevation: 7 }}
@@ -137,8 +166,8 @@ export default function Index() {
             <View className="flex flex-row">
               <View>
                 <Image
+                  style={styles.icons}
                   source={require("../../assets/images/Consultant.png")}
-                  className="w-20 h-20"
                   resizeMode="contain"
                 />
               </View>
@@ -154,8 +183,8 @@ export default function Index() {
             <View className="flex flex-row">
               <View>
                 <Image
+                  style={styles.icons}
                   source={require("../../assets/images/Goal.png")}
-                  className="w-20 h-20"
                   resizeMode="contain"
                 />
               </View>
@@ -171,8 +200,8 @@ export default function Index() {
             <View className="flex flex-row">
               <View>
                 <Image
+                  style={styles.icons}
                   source={require("../../assets/images/Healthcare.png")}
-                  className="w-20 h-20"
                   resizeMode="contain"
                 />
               </View>
@@ -183,12 +212,12 @@ export default function Index() {
           </TouchableOpacity>
         </ScrollView>
         <ScrollView
-          className="flex flex-row overflow-x-scroll  mt-10"
+          className="flex flex-row overflow-x-scroll overflow-y-hidden  mt-10"
           ref={scrollViewRef}
           horizontal
           showsHorizontalScrollIndicator={false}
           pagingEnabled
-          style={{ maxHeight: 145 }}
+          style={{ maxHeight: 170 }}
         >
           {duplicatedViews.map((view, index) => (
             <View
@@ -206,8 +235,8 @@ export default function Index() {
                 {view.description}
               </Text>
               <Image
+                style={styles.carouselicons}
                 source={view.image}
-                className="w-20 h-20 absolute bottom-2 right-2"
                 resizeMode="contain"
               />
             </View>
@@ -223,8 +252,8 @@ export default function Index() {
             >
               <View className="w-28 h-full rounded-2xl bg-cyan-600 overflow-hidden ">
                 <Image
+                  style={styles.doctorprofilepic}
                   source={require("../../assets/images/Doctor_profile_pic1.jpg")}
-                  className="w-full h-full"
                   resizeMode="cover"
                 ></Image>
               </View>
@@ -272,8 +301,8 @@ export default function Index() {
             >
               <View className="w-28 h-full rounded-2xl bg-cyan-600 overflow-hidden ">
                 <Image
+                  style={styles.doctorprofilepic}
                   source={require("../../assets/images/Doctor_profile_pic2.jpg")}
-                  className="w-full h-full"
                   resizeMode="cover"
                 ></Image>
               </View>
@@ -316,8 +345,8 @@ export default function Index() {
             >
               <View className="w-28 h-full rounded-2xl bg-cyan-600 overflow-hidden ">
                 <Image
+                  style={styles.doctorprofilepic}
                   source={require("../../assets/images/Doctor_profile_pic3.jpg")}
-                  className="w-full h-full"
                   resizeMode="cover"
                 ></Image>
               </View>
