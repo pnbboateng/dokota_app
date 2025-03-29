@@ -9,6 +9,7 @@ import {
   ImageBackground,
   Animated,
   Dimensions,
+  Platform,
 } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import Entypo from "@expo/vector-icons/Entypo";
@@ -70,10 +71,17 @@ export default function Index() {
   }, []);
 
   return (
-    <SafeAreaView className="h-screen ">
+    <SafeAreaView
+      style={{
+        flex: 1,
+
+        paddingTop: Platform.OS === "android" ? 25 : 0, // Adjust manually if needed // Fix for TypeScript
+      }}
+      className="h-screen "
+    >
       <StatusBar style="dark" />
 
-      <View className="z-20 flex-row justify-between px-2 ">
+      <View className="z-20 flex-row justify-between px-2">
         <TouchableOpacity className="">
           <Entypo name="menu" size={28} color="black" />
         </TouchableOpacity>
@@ -122,7 +130,10 @@ export default function Index() {
           showsHorizontalScrollIndicator={false}
           style={{ maxHeight: 145, overflow: "visible" }}
         >
-          <TouchableOpacity className="w-40 h-40 shadow-sm rounded-lg bg-white mx-2 flex flex-col">
+          <TouchableOpacity
+            style={{ elevation: 7 }}
+            className="w-40 h-40 shadow-sm rounded-lg bg-white mx-2 flex flex-col"
+          >
             <View className="flex flex-row">
               <View>
                 <Image
@@ -136,7 +147,10 @@ export default function Index() {
               <Text className="font-bold">Consultation</Text>
             </View>
           </TouchableOpacity>
-          <TouchableOpacity className="w-40 h-40 shadow-sm rounded-lg bg-white mx-2 flex flex-col">
+          <TouchableOpacity
+            style={{ elevation: 7 }}
+            className="w-40 h-40 shadow-sm rounded-lg bg-white mx-2 flex flex-col"
+          >
             <View className="flex flex-row">
               <View>
                 <Image
@@ -150,7 +164,10 @@ export default function Index() {
               <Text className="font-bold">Vitals Tracker</Text>
             </View>
           </TouchableOpacity>
-          <TouchableOpacity className="w-40 h-40 shadow-sm rounded-lg bg-white mx-2 flex flex-col">
+          <TouchableOpacity
+            style={{ elevation: 7 }}
+            className="w-40 h-40 shadow-sm rounded-lg bg-white mx-2 flex flex-col"
+          >
             <View className="flex flex-row">
               <View>
                 <Image
@@ -200,7 +217,10 @@ export default function Index() {
         <Text className="mt-6 text-xl ml-2 font-bold ">Top Doctors</Text>
         <View className="mt-6 px-2 w-full">
           <TouchableOpacity>
-            <View className="w-full bg-white h-40 p-3 rounded-2xl flex flex-row shadow-sm justify-between ">
+            <View
+              style={{ elevation: 7 }}
+              className="w-full bg-white h-40 p-3 rounded-2xl flex flex-row shadow-sm justify-between"
+            >
               <View className="w-28 h-full rounded-2xl bg-cyan-600 overflow-hidden ">
                 <Image
                   source={require("../../assets/images/Doctor_profile_pic1.jpg")}
@@ -208,14 +228,26 @@ export default function Index() {
                   resizeMode="cover"
                 ></Image>
               </View>
-              <View className="flex flex-col ">
-                <View className="flex justify-start">
-                  <Text className="font-bold ">Dr. Emmanuel Kwakye</Text>
-                  <Text>General Practitioner</Text>
-                  <Text>Email: ekwakye@gmail.com</Text>
+              <View className="flex flex-col -ml-8">
+                <View
+                  style={{ maxWidth: 130 }}
+                  className="flex text-wrap  justify-start"
+                >
+                  <Text
+                    numberOfLines={1}
+                    ellipsizeMode="tail"
+                    className="font-bold "
+                  >
+                    Dr. Emmanuel Kwakye Frimpong
+                  </Text>
+                  <Text numberOfLines={1} ellipsizeMode="tail">
+                    General Practitioner
+                  </Text>
                 </View>
-                <View className="flex justify-end mt-auto ">
-                  <Text>Fee: 100 cedis</Text>
+                <View className="flex justify-end mt-auto">
+                  <Text numberOfLines={1} ellipsizeMode="tail">
+                    Fee: 100 cedis
+                  </Text>
                 </View>
               </View>
               <View className="flex flex-col">
@@ -234,7 +266,10 @@ export default function Index() {
             </View>
           </TouchableOpacity>
           <TouchableOpacity className="mt-3">
-            <View className="w-full bg-white h-40 p-3 rounded-2xl flex flex-row shadow-sm justify-between ">
+            <View
+              style={{ elevation: 7 }}
+              className="w-full bg-white h-40 p-3 rounded-2xl flex flex-row shadow-sm justify-between "
+            >
               <View className="w-28 h-full rounded-2xl bg-cyan-600 overflow-hidden ">
                 <Image
                   source={require("../../assets/images/Doctor_profile_pic2.jpg")}
@@ -242,11 +277,18 @@ export default function Index() {
                   resizeMode="cover"
                 ></Image>
               </View>
-              <View className="flex flex-col ">
+              <View style={{ maxWidth: 150 }} className="flex flex-col -ml-8">
                 <View className="flex justify-start">
-                  <Text className="font-bold ">Dr. Rita Nsiah</Text>
-                  <Text>General Practitioner</Text>
-                  <Text>Email: ensiah@gmail.com</Text>
+                  <Text
+                    numberOfLines={1}
+                    ellipsizeMode="tail"
+                    className="font-bold "
+                  >
+                    Dr. Rita Nsiah
+                  </Text>
+                  <Text numberOfLines={1} ellipsizeMode="tail">
+                    General Practitioner
+                  </Text>
                 </View>
                 <View className="flex justify-end mt-auto ">
                   <Text>Fee: 150 cedis</Text>
@@ -268,7 +310,10 @@ export default function Index() {
             </View>
           </TouchableOpacity>
           <TouchableOpacity className="mt-3">
-            <View className="w-full bg-white h-40 p-3 rounded-2xl flex flex-row shadow-sm justify-between ">
+            <View
+              style={{ elevation: 7 }}
+              className="w-full bg-white h-40 p-3 rounded-2xl flex flex-row shadow-sm justify-between "
+            >
               <View className="w-28 h-full rounded-2xl bg-cyan-600 overflow-hidden ">
                 <Image
                   source={require("../../assets/images/Doctor_profile_pic3.jpg")}
@@ -276,14 +321,23 @@ export default function Index() {
                   resizeMode="cover"
                 ></Image>
               </View>
-              <View className="flex flex-col ">
+              <View style={{ maxWidth: 180 }} className="flex flex-col -ml-8">
                 <View className="flex justify-start">
-                  <Text className="font-bold ">Dr. Francis Sarfo</Text>
-                  <Text>General Practitioner</Text>
-                  <Text>Email: fsarfo@gmail.com</Text>
+                  <Text
+                    numberOfLines={1}
+                    ellipsizeMode="tail"
+                    className="font-bold "
+                  >
+                    Dr. Francis Sarfo
+                  </Text>
+                  <Text numberOfLines={1} ellipsizeMode="tail">
+                    General Practitioner
+                  </Text>
                 </View>
                 <View className="flex justify-end mt-auto ">
-                  <Text>Fee: 90 cedis</Text>
+                  <Text numberOfLines={1} ellipsizeMode="tail">
+                    Fee: 90 cedis
+                  </Text>
                 </View>
               </View>
               <View className="flex flex-col">
@@ -304,7 +358,10 @@ export default function Index() {
           <Text className="mt-6 text-xl ml-2 font-bold mb-3">
             Recent activities
           </Text>
-          <View className="flex flex-col shadow-sm  mt-4 px-2  bg-white rounded-2xl py-4 mb-32 w-full">
+          <View
+            style={{ elevation: 7 }}
+            className="flex flex-col shadow-sm  mt-4 px-2  bg-white rounded-2xl py-4 mb-40 w-full"
+          >
             <View className="h-14 w-full flex justify-between flex-row ">
               <View className="flex flex-col items-center">
                 <View>
