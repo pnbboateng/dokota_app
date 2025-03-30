@@ -66,6 +66,12 @@ const styles = StyleSheet.create({
     width: "100%",
     height: "100%",
   },
+  backgroundImage: {
+    position: "absolute",
+    width: "100%",
+    height: "100%",
+    opacity: 0.2,
+  },
 });
 
 const totalViews = views.length;
@@ -400,7 +406,7 @@ export default function Index() {
           </Text>
           <View
             style={{ elevation: 7 }}
-            className="flex flex-col shadow-sm  mt-4 px-2  bg-white rounded-2xl py-4 mb-40 w-full"
+            className="flex flex-col shadow-sm  mt-4 px-2  bg-white rounded-2xl py-4  w-full"
           >
             <View className="h-14 w-full flex justify-between flex-row ">
               <View className="flex flex-col items-center">
@@ -444,8 +450,44 @@ export default function Index() {
                 <Text className="">28 / 03 / 2025 • 3:42 PM</Text>
               </View>
             </View>
-            <View></View>
-            <View></View>
+          </View>
+          <Text className="mt-6 text-xl ml-2 font-bold mb-3">
+            Wellness Guide
+          </Text>
+          <View className="mb-40">
+            <TouchableOpacity className="mt-3">
+              <View
+                style={{ elevation: 7 }}
+                className="w-full bg-white h-40  rounded-2xl flex flex-row shadow-sm items-center"
+              >
+                <Image
+                  source={require("../../assets/images/WellnessGuide.png")}
+                  style={styles.backgroundImage}
+                  resizeMode="cover"
+                />
+                <View className="w-32 h-full rounded-lg overflow-hidden">
+                  <Image
+                    style={styles.doctorprofilepic}
+                    source={require("../../assets/images/HealthTip2.png")}
+                    resizeMode="contain"
+                  />
+                </View>
+
+                <View className="flex-1 px-4 justify-center">
+                  <Text className="text-pretty font-bold text-gray-800 text-lg leading-tight">
+                    Your daily source for health tips and wellness insights.
+                  </Text>
+                </View>
+
+                <View className="items-center justify-center">
+                  <MaterialIcons
+                    name="arrow-forward-ios"
+                    size={28}
+                    color="black"
+                  />
+                </View>
+              </View>
+            </TouchableOpacity>
           </View>
         </View>
       </ScrollView>
