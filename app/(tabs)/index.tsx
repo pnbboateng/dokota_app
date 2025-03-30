@@ -44,8 +44,8 @@ const views = [
 
 const styles = StyleSheet.create({
   tinyLogo: {
-    width: 75,
-    height: 65,
+    width: 105,
+    height: 40,
   },
   doctor: {
     width: "100%",
@@ -108,7 +108,7 @@ export default function Index() {
     >
       <StatusBar style="dark" />
 
-      <View className="z-20 flex-row justify-between items-center px-2">
+      <View className="z-20 flex-row justify-between items-center pb-4 px-2">
         <TouchableOpacity className="">
           <Entypo name="menu" size={28} color="black" />
         </TouchableOpacity>
@@ -116,7 +116,7 @@ export default function Index() {
           <Image
             style={styles.tinyLogo}
             source={require("../../assets/images/logo.png")}
-            resizeMode="contain"
+            resizeMode="cover"
           />
         </View>
         <View className="w-8">
@@ -153,11 +153,11 @@ export default function Index() {
         </View>
         <Text className="mt-6 text-xl ml-2 font-bold ">Services</Text>
         <ScrollView
-          className="flex flex-row overflow-x-scroll mt-6"
+          className="flex flex-row overflow-visible  mt-6"
           horizontal={true}
           contentContainerStyle={{ flexGrow: 1 }}
           showsHorizontalScrollIndicator={false}
-          style={{ maxHeight: 160 }}
+          scrollEnabled={true}
         >
           <TouchableOpacity
             style={{ elevation: 7 }}
@@ -245,82 +245,39 @@ export default function Index() {
 
         <Text className="mt-6 text-xl ml-2 font-bold ">Top Doctors</Text>
         <View className="mt-6 px-2 w-full">
-          <TouchableOpacity>
-            <View
-              style={{ elevation: 7 }}
-              className="w-full bg-white h-40 p-3 rounded-2xl flex flex-row shadow-sm justify-between"
-            >
-              <View className="w-28 h-full rounded-2xl bg-cyan-600 overflow-hidden ">
-                <Image
-                  style={styles.doctorprofilepic}
-                  source={require("../../assets/images/Doctor_profile_pic1.jpg")}
-                  resizeMode="cover"
-                ></Image>
-              </View>
-              <View className="flex flex-col -ml-8">
-                <View
-                  style={{ maxWidth: 130 }}
-                  className="flex text-wrap  justify-start"
-                >
-                  <Text
-                    numberOfLines={1}
-                    ellipsizeMode="tail"
-                    className="font-bold "
-                  >
-                    Dr. Emmanuel Kwakye Frimpong
-                  </Text>
-                  <Text numberOfLines={1} ellipsizeMode="tail">
-                    General Practitioner
-                  </Text>
-                </View>
-                <View className="flex justify-end mt-auto">
-                  <Text numberOfLines={1} ellipsizeMode="tail">
-                    Fee: 100 cedis
-                  </Text>
-                </View>
-              </View>
-              <View className="flex flex-col">
-                <View className="flex flex-row justify-start flex-start items-center">
-                  <AntDesign name="star" size={20} color="gold" />
-                  <Text className="ml-1">4.5/5</Text>
-                </View>
-                <View className="flex justify-end mt-auto">
-                  <MaterialCommunityIcons
-                    name="arrow-right-box"
-                    size={50}
-                    color="black"
-                  />
-                </View>
-              </View>
-            </View>
-          </TouchableOpacity>
           <TouchableOpacity className="mt-3">
             <View
               style={{ elevation: 7 }}
               className="w-full bg-white h-40 p-3 rounded-2xl flex flex-row shadow-sm justify-between "
             >
-              <View className="w-28 h-full rounded-2xl bg-cyan-600 overflow-hidden ">
-                <Image
-                  style={styles.doctorprofilepic}
-                  source={require("../../assets/images/Doctor_profile_pic2.jpg")}
-                  resizeMode="cover"
-                ></Image>
-              </View>
-              <View style={{ maxWidth: 150 }} className="flex flex-col -ml-8">
-                <View className="flex justify-start">
-                  <Text
-                    numberOfLines={1}
-                    ellipsizeMode="tail"
-                    className="font-bold "
-                  >
-                    Dr. Rita Nsiah
-                  </Text>
-                  <Text numberOfLines={1} ellipsizeMode="tail">
-                    General Practitioner
-                  </Text>
+              <View className="     flex flex-row ">
+                <View className="w-28 bg-cyan-600 h-full rounded-2xl overflow-hidden">
+                  <Image
+                    style={styles.doctorprofilepic}
+                    source={require("../../assets/images/Doctor_profile_pic1.jpg")}
+                    resizeMode="cover"
+                  ></Image>
                 </View>
-                <View className="flex justify-end mt-auto ">
-                  <Text>Fee: 150 cedis</Text>
+                <View className="ml-2" style={{ maxWidth: 150 }}>
+                  <View className="flex ">
+                    <Text
+                      numberOfLines={1}
+                      ellipsizeMode="tail"
+                      className="font-bold "
+                    >
+                      Dr. Emmanuel Kwakye Frimpong
+                    </Text>
+                    <Text numberOfLines={1} ellipsizeMode="tail">
+                      General Practitioner
+                    </Text>
+                  </View>
+                  <View className="mt-3 flex flex-row items-center">
+                    <FontAwesome name="circle" size={10} color="green" />
+                    <Text className="ml-2">Available</Text>
+                  </View>
+                  <View className="flex justify-end mt-auto ">
+                    <Text>Fee: 150 cedis</Text>
+                  </View>
                 </View>
               </View>
               <View className="flex flex-col">
@@ -343,36 +300,90 @@ export default function Index() {
               style={{ elevation: 7 }}
               className="w-full bg-white h-40 p-3 rounded-2xl flex flex-row shadow-sm justify-between "
             >
-              <View className="w-28 h-full rounded-2xl bg-cyan-600 overflow-hidden ">
-                <Image
-                  style={styles.doctorprofilepic}
-                  source={require("../../assets/images/Doctor_profile_pic3.jpg")}
-                  resizeMode="cover"
-                ></Image>
-              </View>
-              <View style={{ maxWidth: 180 }} className="flex flex-col -ml-8">
-                <View className="flex justify-start">
-                  <Text
-                    numberOfLines={1}
-                    ellipsizeMode="tail"
-                    className="font-bold "
-                  >
-                    Dr. Francis Sarfo
-                  </Text>
-                  <Text numberOfLines={1} ellipsizeMode="tail">
-                    General Practitioner
-                  </Text>
+              <View className="     flex flex-row ">
+                <View className="w-28 bg-cyan-600 h-full rounded-2xl overflow-hidden">
+                  <Image
+                    style={styles.doctorprofilepic}
+                    source={require("../../assets/images/Doctor_profile_pic2.jpg")}
+                    resizeMode="cover"
+                  ></Image>
                 </View>
-                <View className="flex justify-end mt-auto ">
-                  <Text numberOfLines={1} ellipsizeMode="tail">
-                    Fee: 90 cedis
-                  </Text>
+                <View className="ml-2" style={{ maxWidth: 150 }}>
+                  <View className="flex ">
+                    <Text
+                      numberOfLines={1}
+                      ellipsizeMode="tail"
+                      className="font-bold "
+                    >
+                      Dr. Rita Nsiah
+                    </Text>
+                    <Text numberOfLines={1} ellipsizeMode="tail">
+                      General Practitioner
+                    </Text>
+                  </View>
+                  <View className="mt-3 flex flex-row items-center">
+                    <FontAwesome name="circle" size={10} color="gray" />
+                    <Text className="ml-2">Offline</Text>
+                  </View>
+                  <View className="flex justify-end mt-auto ">
+                    <Text>Fee: 150 cedis</Text>
+                  </View>
                 </View>
               </View>
               <View className="flex flex-col">
                 <View className="flex flex-row justify-start flex-start items-center">
                   <AntDesign name="star" size={20} color="gold" />
-                  <Text className="ml-1">3/5</Text>
+                  <Text className="ml-1">4.9/5</Text>
+                </View>
+                <View className="flex justify-end mt-auto">
+                  <MaterialCommunityIcons
+                    name="arrow-right-box"
+                    size={50}
+                    color="black"
+                  />
+                </View>
+              </View>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity className="mt-3">
+            <View
+              style={{ elevation: 7 }}
+              className="w-full bg-white h-40 p-3 rounded-2xl flex flex-row shadow-sm justify-between "
+            >
+              <View className="     flex flex-row ">
+                <View className="w-28 bg-cyan-600 h-full rounded-2xl overflow-hidden">
+                  <Image
+                    style={styles.doctorprofilepic}
+                    source={require("../../assets/images/Doctor_profile_pic3.jpg")}
+                    resizeMode="cover"
+                  ></Image>
+                </View>
+                <View className="ml-2" style={{ maxWidth: 150 }}>
+                  <View className="flex ">
+                    <Text
+                      numberOfLines={1}
+                      ellipsizeMode="tail"
+                      className="font-bold "
+                    >
+                      Dr. Francis Oduro
+                    </Text>
+                    <Text numberOfLines={1} ellipsizeMode="tail">
+                      General Practitioner
+                    </Text>
+                  </View>
+                  <View className="mt-3 flex flex-row items-center">
+                    <FontAwesome name="circle" size={10} color="green" />
+                    <Text className="ml-2">Available</Text>
+                  </View>
+                  <View className="flex justify-end mt-auto ">
+                    <Text>Fee: 100 cedis</Text>
+                  </View>
+                </View>
+              </View>
+              <View className="flex flex-col">
+                <View className="flex flex-row justify-start flex-start items-center">
+                  <AntDesign name="star" size={20} color="gold" />
+                  <Text className="ml-1">4.0/5</Text>
                 </View>
                 <View className="flex justify-end mt-auto">
                   <MaterialCommunityIcons
