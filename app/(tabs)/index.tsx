@@ -258,7 +258,7 @@ export default function Index() {
                     resizeMode="cover"
                   ></Image>
                 </View>
-                <View className="ml-2" style={{ maxWidth: 150 }}>
+                <View className="ml-2 max-w-[150] md:max-w-[500]">
                   <View className="flex ">
                     <Text
                       numberOfLines={1}
@@ -308,7 +308,7 @@ export default function Index() {
                     resizeMode="cover"
                   ></Image>
                 </View>
-                <View className="ml-2" style={{ maxWidth: 150 }}>
+                <View className="ml-2 max-w-[150] md:max-w-[500]">
                   <View className="flex ">
                     <Text
                       numberOfLines={1}
@@ -358,7 +358,7 @@ export default function Index() {
                     resizeMode="cover"
                   ></Image>
                 </View>
-                <View className="ml-2" style={{ maxWidth: 150 }}>
+                <View className="ml-2 max-w-[150] md:max-w-[500]">
                   <View className="flex ">
                     <Text
                       numberOfLines={1}
