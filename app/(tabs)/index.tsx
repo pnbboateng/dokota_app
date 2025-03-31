@@ -12,6 +12,8 @@ import {
   Platform,
   StyleSheet,
 } from "react-native";
+import { Appearance } from "react-native";
+import { Colors } from "@/constants/Colors";
 import { StatusBar } from "expo-status-bar";
 import Entypo from "@expo/vector-icons/Entypo";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
@@ -24,23 +26,6 @@ const { width } = Dimensions.get("window"); // Get screen width
 const viewWidth = width - 16; // Subtract mx-2 (8px on each side)
 
 // Define views with content (text, image)
-const views = [
-  {
-    title: "Welcome to Dokota App",
-    description: "Telemedicine for the elderly",
-    image: require("../../assets/images/Doctor.png"),
-  },
-  {
-    title: "Track Your BP & Blood sugar",
-    description: "Monitor your blood pressure and sugar in real-time.",
-    image: require("../../assets/images/Goal.png"),
-  },
-  {
-    title: "Emergency Assistance",
-    description: "Call an ambulance instantly.",
-    image: require("../../assets/images/Healthcare.png"),
-  },
-];
 
 const styles = StyleSheet.create({
   tinyLogo: {
@@ -52,6 +37,8 @@ const styles = StyleSheet.create({
     height: "100%",
   },
   icons: {
+    marginLeft: 2,
+    marginTop: 2,
     width: 70,
     height: 70,
   },
@@ -73,11 +60,30 @@ const styles = StyleSheet.create({
     opacity: 0.2,
   },
 });
+const views = [
+  {
+    title: "Welcome to Dokota App",
+    description: "Telemedicine for the elderly",
+    image: require("../../assets/images/Doctor.png"),
+  },
+  {
+    title: "Track Your BP & Blood sugar",
+    description: "Monitor your blood pressure and sugar in real-time.",
+    image: require("../../assets/images/Checklist_lightmode.png"),
+  },
+  {
+    title: "Emergency Assistance",
+    description: "Call an ambulance instantly.",
+    image: require("../../assets/images/ambulance_darkmode.png"),
+  },
+];
 
 const totalViews = views.length;
 const duplicatedViews = [...views, ...views];
 
 export default function Index() {
+  const colorScheme = Appearance.getColorScheme();
+  const theme = colorScheme === "dark" ? Colors.dark : Colors.light;
   const name = "Philip";
   const scrollViewRef = useRef<ScrollView>(null);
   let scrollPosition = 0;
@@ -107,16 +113,17 @@ export default function Index() {
     <SafeAreaView
       style={{
         flex: 1,
+        backgroundColor: theme.background,
 
         paddingTop: Platform.OS === "android" ? 25 : 0, // Adjust manually if needed // Fix for TypeScript
       }}
       className="h-screen "
     >
-      <StatusBar style="dark" />
+      <StatusBar style={colorScheme === "dark" ? "light" : "dark"} />
 
       <View className="z-20 flex-row justify-between items-center pb-4 px-2">
         <TouchableOpacity className="">
-          <Entypo name="menu" size={28} color="black" />
+          <Entypo name="menu" size={28} color={theme.icon} />
         </TouchableOpacity>
         <View className="items-center justify-center ">
           <Image
@@ -127,7 +134,11 @@ export default function Index() {
         </View>
         <View className="w-8">
           <TouchableOpacity className="">
-            <MaterialIcons name="notifications-none" size={28} color="black" />
+            <MaterialIcons
+              name="notifications-none"
+              size={28}
+              color={theme.icon}
+            />
           </TouchableOpacity>
         </View>
       </View>
@@ -136,7 +147,7 @@ export default function Index() {
         horizontal={false}
         showsVerticalScrollIndicator={false}
       >
-        <View className="w-[calc(100%-16px)] bg-red-900 h-40 mx-2 rounded-2xl flex flex-row ">
+        <View className="w-[calc(100%-16px)] bg-red-950 h-40 mt-3 mx-2 rounded-2xl flex flex-row ">
           <View className="w-[60%] flex flex-col pl-3 py-9 justify-start">
             <Text
               style={{ fontFamily: "Poppins-Bold" }}
@@ -157,63 +168,86 @@ export default function Index() {
             />
           </View>
         </View>
-        <Text className="mt-6 text-xl ml-2 font-bold ">Services</Text>
+        <Text
+          style={{ color: theme.icon }}
+          className="mt-10 text-xl ml-2 font-bold "
+        >
+          Services
+        </Text>
         <ScrollView
-          className="flex flex-row overflow-visible  mt-6"
+          className="flex flex-row overflow-visible  mt-2"
           horizontal={true}
           contentContainerStyle={{ flexGrow: 1 }}
           showsHorizontalScrollIndicator={false}
           scrollEnabled={true}
         >
           <TouchableOpacity
-            style={{ elevation: 7 }}
+            style={{ elevation: 7, backgroundColor: theme.containerBackground }}
             className="w-40 h-40 shadow-sm rounded-lg bg-white mx-2 flex flex-col"
           >
             <View className="flex flex-row">
               <View>
                 <Image
                   style={styles.icons}
-                  source={require("../../assets/images/Consultant.png")}
+                  source={
+                    colorScheme === "dark"
+                      ? require("../../assets/images/Consultation_lightmode.png")
+                      : require("../../assets/images/Consultation_lightmode.png")
+                  }
                   resizeMode="contain"
                 />
               </View>
             </View>
             <View className="items-center justify-center mt-11">
-              <Text className="font-bold">Consultation</Text>
+              <Text style={{ color: theme.icon }} className="font-bold">
+                Consultation
+              </Text>
             </View>
           </TouchableOpacity>
           <TouchableOpacity
-            style={{ elevation: 7 }}
+            style={{ elevation: 7, backgroundColor: theme.containerBackground }}
             className="w-40 h-40 shadow-sm rounded-lg bg-white mx-2 flex flex-col"
           >
             <View className="flex flex-row">
               <View>
                 <Image
                   style={styles.icons}
-                  source={require("../../assets/images/Goal.png")}
+                  source={
+                    colorScheme === "dark"
+                      ? require("../../assets/images/Checklist_darkmode.png")
+                      : require("../../assets/images/Checklist_lightmode.png")
+                  }
                   resizeMode="contain"
                 />
               </View>
             </View>
             <View className="items-center justify-center mt-11">
-              <Text className="font-bold">Vitals Tracker</Text>
+              <Text style={{ color: theme.icon }} className="font-bold">
+                Vitals Tracker
+              </Text>
             </View>
           </TouchableOpacity>
           <TouchableOpacity
-            style={{ elevation: 7 }}
+            style={{ elevation: 7, backgroundColor: theme.containerBackground }}
             className="w-40 h-40 shadow-sm rounded-lg bg-white mx-2 flex flex-col"
           >
             <View className="flex flex-row">
               <View>
                 <Image
                   style={styles.icons}
-                  source={require("../../assets/images/Healthcare.png")}
+                  source={
+                    colorScheme === "dark"
+                      ? require("../../assets/images/ambulance_darkmode.png")
+                      : require("../../assets/images/ambulance_lightmode.png")
+                  }
                   resizeMode="contain"
                 />
               </View>
             </View>
             <View className="items-center justify-center mt-11">
-              <Text className="font-bold">Emergency</Text>
+              <Text style={{ color: theme.icon }} className="font-bold">
+                Emergency
+              </Text>
             </View>
           </TouchableOpacity>
         </ScrollView>
@@ -249,11 +283,19 @@ export default function Index() {
           ))}
         </ScrollView>
 
-        <Text className="mt-6 text-xl ml-2 font-bold ">Top Doctors</Text>
-        <View className="mt-6 px-2 w-full">
-          <TouchableOpacity className="mt-3">
+        <Text
+          style={{ color: theme.icon }}
+          className="mt-10 text-xl ml-2 font-bold "
+        >
+          Top Doctors
+        </Text>
+        <View className="mt-2 px-2 w-full">
+          <TouchableOpacity>
             <View
-              style={{ elevation: 7 }}
+              style={{
+                elevation: 7,
+                backgroundColor: theme.containerBackground,
+              }}
               className="w-full bg-white h-40 p-3 rounded-2xl flex flex-row shadow-sm justify-between "
             >
               <View className="     flex flex-row ">
@@ -267,35 +309,44 @@ export default function Index() {
                 <View className="ml-2 max-w-[150] md:max-w-[500]">
                   <View className="flex ">
                     <Text
+                      style={{ color: theme.icon }}
                       numberOfLines={1}
                       ellipsizeMode="tail"
                       className="font-bold "
                     >
                       Dr. Emmanuel Kwakye Frimpong
                     </Text>
-                    <Text numberOfLines={1} ellipsizeMode="tail">
+                    <Text
+                      style={{ color: theme.icon }}
+                      numberOfLines={1}
+                      ellipsizeMode="tail"
+                    >
                       General Practitioner
                     </Text>
                   </View>
                   <View className="mt-3 flex flex-row items-center">
                     <FontAwesome name="circle" size={10} color="green" />
-                    <Text className="ml-2">Available</Text>
+                    <Text style={{ color: theme.icon }} className="ml-2">
+                      Available
+                    </Text>
                   </View>
                   <View className="flex justify-end mt-auto ">
-                    <Text>Fee: 150 cedis</Text>
+                    <Text style={{ color: theme.icon }}>Fee: 150 cedis</Text>
                   </View>
                 </View>
               </View>
               <View className="flex flex-col">
                 <View className="flex flex-row justify-start flex-start items-center">
                   <AntDesign name="star" size={20} color="gold" />
-                  <Text className="ml-1">4.9/5</Text>
+                  <Text style={{ color: theme.icon }} className="ml-1">
+                    4.9/5
+                  </Text>
                 </View>
                 <View className="flex justify-end mt-auto">
                   <MaterialCommunityIcons
                     name="arrow-right-box"
                     size={50}
-                    color="black"
+                    color={theme.icon}
                   />
                 </View>
               </View>
@@ -303,7 +354,10 @@ export default function Index() {
           </TouchableOpacity>
           <TouchableOpacity className="mt-3">
             <View
-              style={{ elevation: 7 }}
+              style={{
+                elevation: 7,
+                backgroundColor: theme.containerBackground,
+              }}
               className="w-full bg-white h-40 p-3 rounded-2xl flex flex-row shadow-sm justify-between "
             >
               <View className="     flex flex-row ">
@@ -317,35 +371,44 @@ export default function Index() {
                 <View className="ml-2 max-w-[150] md:max-w-[500]">
                   <View className="flex ">
                     <Text
+                      style={{ color: theme.icon }}
                       numberOfLines={1}
                       ellipsizeMode="tail"
                       className="font-bold "
                     >
                       Dr. Rita Nsiah
                     </Text>
-                    <Text numberOfLines={1} ellipsizeMode="tail">
+                    <Text
+                      style={{ color: theme.icon }}
+                      numberOfLines={1}
+                      ellipsizeMode="tail"
+                    >
                       General Practitioner
                     </Text>
                   </View>
                   <View className="mt-3 flex flex-row items-center">
                     <FontAwesome name="circle" size={10} color="gray" />
-                    <Text className="ml-2">Offline</Text>
+                    <Text style={{ color: theme.icon }} className="ml-2">
+                      Offline
+                    </Text>
                   </View>
                   <View className="flex justify-end mt-auto ">
-                    <Text>Fee: 150 cedis</Text>
+                    <Text style={{ color: theme.icon }}>Fee: 150 cedis</Text>
                   </View>
                 </View>
               </View>
               <View className="flex flex-col">
                 <View className="flex flex-row justify-start flex-start items-center">
                   <AntDesign name="star" size={20} color="gold" />
-                  <Text className="ml-1">4.9/5</Text>
+                  <Text style={{ color: theme.icon }} className="ml-1">
+                    4.9/5
+                  </Text>
                 </View>
                 <View className="flex justify-end mt-auto">
                   <MaterialCommunityIcons
                     name="arrow-right-box"
                     size={50}
-                    color="black"
+                    color={theme.icon}
                   />
                 </View>
               </View>
@@ -353,7 +416,10 @@ export default function Index() {
           </TouchableOpacity>
           <TouchableOpacity className="mt-3">
             <View
-              style={{ elevation: 7 }}
+              style={{
+                elevation: 7,
+                backgroundColor: theme.containerBackground,
+              }}
               className="w-full bg-white h-40 p-3 rounded-2xl flex flex-row shadow-sm justify-between "
             >
               <View className="     flex flex-row ">
@@ -367,97 +433,134 @@ export default function Index() {
                 <View className="ml-2 max-w-[150] md:max-w-[500]">
                   <View className="flex ">
                     <Text
+                      style={{ color: theme.icon }}
                       numberOfLines={1}
                       ellipsizeMode="tail"
                       className="font-bold "
                     >
                       Dr. Francis Oduro
                     </Text>
-                    <Text numberOfLines={1} ellipsizeMode="tail">
+                    <Text
+                      style={{ color: theme.icon }}
+                      numberOfLines={1}
+                      ellipsizeMode="tail"
+                    >
                       General Practitioner
                     </Text>
                   </View>
                   <View className="mt-3 flex flex-row items-center">
                     <FontAwesome name="circle" size={10} color="green" />
-                    <Text className="ml-2">Available</Text>
+                    <Text style={{ color: theme.icon }} className="ml-2">
+                      Available
+                    </Text>
                   </View>
                   <View className="flex justify-end mt-auto ">
-                    <Text>Fee: 100 cedis</Text>
+                    <Text style={{ color: theme.icon }}>Fee: 100 cedis</Text>
                   </View>
                 </View>
               </View>
               <View className="flex flex-col">
                 <View className="flex flex-row justify-start flex-start items-center">
                   <AntDesign name="star" size={20} color="gold" />
-                  <Text className="ml-1">4.0/5</Text>
+                  <Text style={{ color: theme.icon }} className="ml-1">
+                    4.0/5
+                  </Text>
                 </View>
                 <View className="flex justify-end mt-auto">
                   <MaterialCommunityIcons
                     name="arrow-right-box"
                     size={50}
-                    color="black"
+                    color={theme.icon}
                   />
                 </View>
               </View>
             </View>
           </TouchableOpacity>
-          <Text className="mt-6 text-xl ml-2 font-bold mb-3">
+          <Text
+            style={{ color: theme.icon }}
+            className="mt-10 text-xl ml-2 font-bold "
+          >
             Recent activities
           </Text>
           <View
-            style={{ elevation: 7 }}
-            className="flex flex-col shadow-sm  mt-4 px-2  bg-white rounded-2xl py-4  w-full"
+            style={{ elevation: 7, backgroundColor: theme.containerBackground }}
+            className="flex flex-col shadow-sm  mt-2 px-2  bg-white rounded-2xl py-4  w-full"
           >
             <View className="h-14 w-full flex justify-between flex-row ">
               <View className="flex flex-col items-center">
                 <View>
-                  <FontAwesome name="dot-circle-o" size={24} color="#4c0519" />
+                  <FontAwesome
+                    name="dot-circle-o"
+                    size={24}
+                    color={theme.mainThemeIcons}
+                  />
                 </View>
                 <View className="w-1 bg-slate-400 h-full"></View>
               </View>
               <View className="flex flex-col w-[90%]">
-                <Text className="font-bold">
+                <Text style={{ color: theme.icon }} className="font-bold">
                   You booked a consultation with Dr. Emmanuel Kwakye
                 </Text>
-                <Text className="">28 / 03 / 2025 • 3:42 PM</Text>
+                <Text style={{ color: theme.icon }} className="">
+                  28 / 03 / 2025 • 3:42 PM
+                </Text>
               </View>
             </View>
             <View className="h-14 w-full mt-7 flex justify-between flex-row ">
               <View className="flex flex-col items-center">
                 <View>
-                  <FontAwesome name="dot-circle-o" size={24} color="#4c0519" />
+                  <FontAwesome
+                    name="dot-circle-o"
+                    size={24}
+                    color={theme.mainThemeIcons}
+                  />
                 </View>
                 <View className="w-1 bg-slate-400 h-full"></View>
               </View>
               <View className="flex flex-col w-[90%]">
-                <Text className="font-bold">
+                <Text style={{ color: theme.icon }} className="font-bold">
                   You logged your blood pressure
                 </Text>
-                <Text className="">28 / 03 / 2025 • 9:42 PM</Text>
+                <Text style={{ color: theme.icon }} className="">
+                  28 / 03 / 2025 • 9:42 PM
+                </Text>
               </View>
             </View>
             <View className="h-14 w-full mt-7 flex justify-between flex-row ">
               <View className="flex flex-col items-center">
                 <View>
-                  <FontAwesome name="dot-circle-o" size={24} color="#4c0519" />
+                  <FontAwesome
+                    name="dot-circle-o"
+                    size={24}
+                    color={theme.mainThemeIcons}
+                  />
                 </View>
                 <View className="w-1  h-full"></View>
               </View>
               <View className="flex flex-col w-[90%]">
-                <Text className="font-bold">
+                <Text style={{ color: theme.icon }} className="font-bold">
                   You requested for emergency services
                 </Text>
-                <Text className="">28 / 03 / 2025 • 3:42 PM</Text>
+                <Text style={{ color: theme.icon }} className="">
+                  28 / 03 / 2025 • 3:42 PM
+                </Text>
               </View>
             </View>
           </View>
-          <Text className="mt-6 text-xl ml-2 font-bold mb-3">
+          <Text
+            style={{ color: theme.icon }}
+            className="mt-10 text-xl ml-2 font-bold "
+          >
             Wellness Guide
           </Text>
           <View className="mb-40">
-            <TouchableOpacity className="mt-3">
+            <TouchableOpacity className="mt-2">
               <View
-                style={{ elevation: 7 }}
+                style={{
+                  elevation: 7,
+                  backgroundColor: theme.containerBackground,
+                  overflow: "hidden",
+                }}
                 className="w-full bg-white h-40  rounded-2xl flex flex-row shadow-sm items-center"
               >
                 <Image
@@ -474,7 +577,10 @@ export default function Index() {
                 </View>
 
                 <View className="flex-1 px-4 justify-center">
-                  <Text className="text-pretty font-bold text-gray-800 text-lg leading-tight">
+                  <Text
+                    style={{ color: theme.icon }}
+                    className="text-pretty font-bold text-gray-800 text-lg leading-tight"
+                  >
                     Your daily source for health tips and wellness insights.
                   </Text>
                 </View>
@@ -483,7 +589,7 @@ export default function Index() {
                   <MaterialIcons
                     name="arrow-forward-ios"
                     size={28}
-                    color="black"
+                    color={theme.icon}
                   />
                 </View>
               </View>

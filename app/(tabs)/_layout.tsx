@@ -5,8 +5,13 @@ import Entypo from "@expo/vector-icons/Entypo";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import { useFonts } from "expo-font";
+import { Appearance } from "react-native";
+
+import { Colors } from "@/constants/Colors";
 
 const _Layout = () => {
+  const colorScheme = Appearance.getColorScheme();
+  const theme = colorScheme === "dark" ? Colors.dark : Colors.light;
   let [fontsLoaded] = useFonts({
     "Poppins-Bold": require("../../assets/fonts/Poppins-Bold.ttf"),
   });
@@ -33,10 +38,11 @@ const _Layout = () => {
           fontSize: 12,
         },
         tabBarStyle: {
-          backgroundColor: "white",
+          backgroundColor: theme.containerBackground,
           borderRadius: 70,
           height: 80,
           position: "absolute",
+          borderTopWidth: 0,
 
           marginHorizontal: 10,
           marginBottom: 20,
@@ -58,7 +64,7 @@ const _Layout = () => {
               <Text
                 style={{
                   fontFamily: "Poppins-Bold",
-                  color: focused ? "#4c0519" : "black",
+                  color: focused ? theme.mainThemeIcons : theme.tint,
                 }}
               >
                 Home
@@ -76,7 +82,7 @@ const _Layout = () => {
               <Entypo
                 name="home"
                 size={24}
-                color={focused ? "#4c0519" : "black"}
+                color={focused ? theme.mainThemeIcons : theme.tint}
               />
             </View>
           ),
@@ -93,7 +99,7 @@ const _Layout = () => {
               <Text
                 style={{
                   fontFamily: "Poppins-Bold",
-                  color: focused ? "#4c0519" : "black",
+                  color: focused ? theme.mainThemeIcons : theme.tint,
                 }}
               >
                 SOS
@@ -104,7 +110,7 @@ const _Layout = () => {
             <MaterialIcons
               name="emergency-share"
               size={24}
-              color={focused ? "#4c0519" : "black"}
+              color={focused ? theme.mainThemeIcons : theme.tint}
             />
           ),
         }}
@@ -114,13 +120,23 @@ const _Layout = () => {
         name="profile"
         options={{
           title: "Profile",
-          headerShown: false,
+          headerShown: true,
+          headerStyle: {
+            backgroundColor: "#4c0519",
+          },
+          headerTintColor: theme.supportingText,
+          headerShadowVisible: false,
+          headerTitleAlign: "center",
+          headerTitleStyle: {
+            fontFamily: "Poppins-Bold", // Use the custom font family
+            fontSize: 20, // Adjust font size if needed
+          },
           tabBarLabel: ({ focused }) => (
             <View>
               <Text
                 style={{
                   fontFamily: "Poppins-Bold",
-                  color: focused ? "#4c0519" : "black",
+                  color: focused ? theme.mainThemeIcons : theme.tint,
                 }}
               >
                 Profile
@@ -131,7 +147,7 @@ const _Layout = () => {
             <FontAwesome
               name="user-circle-o"
               size={24}
-              color={focused ? "#4c0519" : "black"}
+              color={focused ? theme.mainThemeIcons : theme.tint}
             />
           ),
         }}
