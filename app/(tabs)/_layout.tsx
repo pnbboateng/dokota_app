@@ -120,7 +120,7 @@ const _Layout = () => {
         name="profile"
         options={{
           title: "Profile",
-          headerShown: true,
+          headerShown: false,
           headerStyle: {
             backgroundColor: "#4c0519",
           },

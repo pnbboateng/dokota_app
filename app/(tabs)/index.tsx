@@ -12,6 +12,7 @@ import {
   Platform,
   StyleSheet,
 } from "react-native";
+import { useRouter } from "expo-router";
 import { Appearance } from "react-native";
 import { Colors } from "@/constants/Colors";
 import { StatusBar } from "expo-status-bar";
@@ -84,6 +85,7 @@ const duplicatedViews = [...views, ...views];
 export default function Index() {
   const colorScheme = Appearance.getColorScheme();
   const theme = colorScheme === "dark" ? Colors.dark : Colors.light;
+  const router = useRouter();
   const name = "Philip";
   const scrollViewRef = useRef<ScrollView>(null);
   let scrollPosition = 0;
@@ -122,7 +124,7 @@ export default function Index() {
       <StatusBar style={colorScheme === "dark" ? "light" : "dark"} />
 
       <View className="z-20 flex-row justify-between items-center pb-4 px-2">
-        <TouchableOpacity className="">
+        <TouchableOpacity>
           <Entypo name="menu" size={28} color={theme.icon} />
         </TouchableOpacity>
         <View className="items-center justify-center ">
