@@ -34,10 +34,20 @@ export default function RootLayout() {
           headerTintColor: theme.supportingText,
           headerShadowVisible: false,
           headerTitleAlign: "center",
-          headerTitleStyle: {
-            fontFamily: "Poppins-Bold", // Use the custom font family
-            fontSize: 20, // Adjust font size if needed
+        }}
+      />
+
+      <Stack.Screen
+        name="services/consultation"
+        options={{
+          title: "Doctors",
+          headerShown: true,
+          headerStyle: {
+            backgroundColor: "#4c0519",
           },
+          headerTintColor: theme.supportingText,
+          headerShadowVisible: false,
+          headerTitleAlign: "center",
         }}
       />
     </Stack>
