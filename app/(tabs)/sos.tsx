@@ -21,6 +21,7 @@ import AntDesign from "@expo/vector-icons/AntDesign";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import React, { useRef, useEffect } from "react";
+import { router } from "expo-router";
 
 const { width } = Dimensions.get("window"); // Get screen width
 const viewWidth = width - 16; // Subtract mx-2 (8px on each side)
@@ -107,9 +108,11 @@ const Sos = () => {
       <StatusBar style={colorScheme === "dark" ? "light" : "dark"} />
 
       <View className="z-20 flex-row justify-between items-center pb-4 px-2">
-        <TouchableOpacity className="">
-          <Entypo name="menu" size={28} color={theme.icon} />
-        </TouchableOpacity>
+        <View className="w-[28]">
+          {/* <TouchableOpacity onPress={() => router.push("../options")}>
+                    <Entypo name="menu" size={28} color={theme.icon} />
+                  </TouchableOpacity> */}
+        </View>
         <View className="items-center justify-center ">
           <Image
             style={styles.tinyLogo}
@@ -118,7 +121,10 @@ const Sos = () => {
           />
         </View>
         <View className="w-8">
-          <TouchableOpacity className="">
+          <TouchableOpacity
+            onPress={() => router.push("../notifications")}
+            className=""
+          >
             <MaterialIcons
               name="notifications-none"
               size={28}

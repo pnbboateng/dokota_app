@@ -13,10 +13,31 @@ export default function RootLayout() {
       <Stack.Screen
         name="(tabs)"
         options={{
+          title: "Home",
           headerShown: false,
           headerStyle: { backgroundColor: theme.headerBackground },
           headerTintColor: theme.text,
           headerShadowVisible: false,
+        }}
+      />
+      <Stack.Screen
+        name="notifications"
+        options={{
+          title: "Notifications",
+          headerBackTitle: "Back",
+
+          headerShown: true,
+
+          headerStyle: {
+            backgroundColor: "#4c0519",
+          },
+          headerTintColor: theme.supportingText,
+          headerShadowVisible: false,
+          headerTitleAlign: "center",
+          headerTitleStyle: {
+            fontFamily: "Poppins-Bold", // Use the custom font family
+            fontSize: 20, // Adjust font size if needed
+          },
         }}
       />
     </Stack>

@@ -74,7 +74,8 @@ const views = [
   },
   {
     title: "Emergency Assistance",
-    description: "Call an ambulance instantly.",
+    description:
+      "Send your location to your Emergency Contacts with just a button",
     image: require("../../assets/images/ambulance_darkmode.png"),
   },
 ];
@@ -124,9 +125,11 @@ export default function Index() {
       <StatusBar style={colorScheme === "dark" ? "light" : "dark"} />
 
       <View className="z-20 flex-row justify-between items-center pb-4 px-2">
-        <TouchableOpacity>
-          <Entypo name="menu" size={28} color={theme.icon} />
-        </TouchableOpacity>
+        <View className="w-[28]">
+          {/* <TouchableOpacity onPress={() => router.push("../options")}>
+            <Entypo name="menu" size={28} color={theme.icon} />
+          </TouchableOpacity> */}
+        </View>
         <View className="items-center justify-center ">
           <Image
             style={styles.tinyLogo}
@@ -135,7 +138,10 @@ export default function Index() {
           />
         </View>
         <View className="w-8">
-          <TouchableOpacity className="">
+          <TouchableOpacity
+            onPress={() => router.push("../notifications")}
+            className=""
+          >
             <MaterialIcons
               name="notifications-none"
               size={28}
@@ -230,6 +236,7 @@ export default function Index() {
             </View>
           </TouchableOpacity>
           <TouchableOpacity
+            onPress={() => router.push("/sos")}
             style={{ elevation: 7, backgroundColor: theme.containerBackground }}
             className="w-40 h-40 shadow-sm rounded-lg bg-white mx-2 flex flex-col"
           >
