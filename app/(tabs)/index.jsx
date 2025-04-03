@@ -117,7 +117,7 @@ const DoctorCard = ({ doctor, theme }) => {
   const router = useRouter();
   return (
     <TouchableOpacity
-      onPress={() => router.push(`/services/consultation/${doctor.id}`)}
+      onPress={() => router.push(`/consultation/${doctor.id}`)}
       className="mt-3"
     >
       <View
@@ -294,7 +294,7 @@ export default function Index() {
           scrollEnabled={true}
         >
           <TouchableOpacity
-            onPress={() => router.push("../services/consultation")}
+            onPress={() => router.push("../consultation")}
             style={{ elevation: 7, backgroundColor: theme.containerBackground }}
             className="w-40 h-40 shadow-sm rounded-lg bg-white mx-2 flex flex-col"
           >

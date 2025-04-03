@@ -8,10 +8,10 @@ const _layout = () => {
   return (
     <Stack screenOptions={{ headerShown: false }}>
       <Stack.Screen
-        name="doctors"
+        name="index"
         options={{
-          title: "Doctors",
-          headerShown: true,
+          title: "Doctor",
+          headerShown: false,
           headerStyle: {
             backgroundColor: "#4c0519",
           },
@@ -23,11 +23,13 @@ const _layout = () => {
       />
 
       <Stack.Screen
-        name="[id]"
+        name="reviews"
         options={{
-          title: "Doctor",
+          title: "Reviews",
+          headerBackTitle: "Back",
           headerShown: true,
           headerStyle: { backgroundColor: "#4c0519" },
+          // Makes background transparent
 
           headerTintColor: "white",
           headerTitleAlign: "center",

@@ -38,10 +38,10 @@ export default function RootLayout() {
       />
 
       <Stack.Screen
-        name="services/consultation"
+        name="consultation"
         options={{
           title: "Doctors",
-          headerShown: true,
+          headerShown: false,
           headerStyle: {
             backgroundColor: "#4c0519",
           },

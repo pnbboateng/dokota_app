@@ -65,7 +65,7 @@ const topDoctors = [
     image: require("@/assets/images/Doctor_profile_pic4.jpg"),
   },
   {
-    id: 4,
+    id: 5,
     name: "Peter Antwi",
     specialty: "General Practitioner",
     status: "Available",
@@ -115,7 +115,7 @@ const DoctorCard = ({ doctor }) => {
   const router = useRouter();
   return (
     <TouchableOpacity
-      onPress={() => router.push(`/services/consultation/${doctor.id}`)}
+      onPress={() => router.push(`/consultation/${doctor.id}`)}
       className="mt-3 overflow-hidden"
     >
       <View
