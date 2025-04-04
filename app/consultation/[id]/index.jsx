@@ -126,7 +126,7 @@ const DoctorCard = ({ doctor }) => {
             </View>
             <View className="flex flex-row items-center">
               <AntDesign name="star" size={20} color="gold" />
-              <Text style={{ color: theme.icon }} className="ml-2 font-bold">
+              <Text style={{ color: theme.icon }} className="ml-1 font-bold">
                 {doctor.rating}/5
               </Text>
             </View>

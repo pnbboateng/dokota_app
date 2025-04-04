@@ -304,8 +304,8 @@ export default function Index() {
                   style={styles.icons}
                   source={
                     colorScheme === "dark"
-                      ? require("../../assets/images/Consultation_lightmode.png")
-                      : require("../../assets/images/Consultation_lightmode.png")
+                      ? require("@/assets/images/Consultation_lightmode.png")
+                      : require("@/assets/images/Consultation_lightmode.png")
                   }
                   resizeMode="contain"
                 />
@@ -487,7 +487,10 @@ export default function Index() {
             Wellness Guide
           </Text>
           <View className="mb-40">
-            <TouchableOpacity className="mt-2">
+            <TouchableOpacity
+              onPress={() => router.push("../wellness")}
+              className="mt-2"
+            >
               <View
                 style={{
                   elevation: 7,

@@ -38,6 +38,23 @@ export default function RootLayout() {
       />
 
       <Stack.Screen
+        name="wellness"
+        options={{
+          title: "Wellness Guide",
+          headerBackTitle: "Back",
+
+          headerShown: true,
+
+          headerStyle: {
+            backgroundColor: "#4c0519",
+          },
+          headerTintColor: theme.supportingText,
+          headerShadowVisible: false,
+          headerTitleAlign: "center",
+        }}
+      />
+
+      <Stack.Screen
         name="consultation"
         options={{
           title: "Doctors",
