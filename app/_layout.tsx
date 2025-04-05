@@ -55,6 +55,23 @@ export default function RootLayout() {
       />
 
       <Stack.Screen
+        name="vitals"
+        options={{
+          title: "Vitals",
+          // headerBackTitle: "Back",
+
+          headerShown: false,
+
+          headerStyle: {
+            backgroundColor: "#4c0519",
+          },
+          headerTintColor: theme.supportingText,
+          headerShadowVisible: false,
+          headerTitleAlign: "center",
+        }}
+      />
+
+      <Stack.Screen
         name="consultation"
         options={{
           title: "Doctors",

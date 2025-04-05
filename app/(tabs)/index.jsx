@@ -318,6 +318,7 @@ export default function Index() {
             </View>
           </TouchableOpacity>
           <TouchableOpacity
+            onPress={() => router.push("../vitals")}
             style={{ elevation: 7, backgroundColor: theme.containerBackground }}
             className="w-40 h-40 shadow-sm rounded-lg bg-white mx-2 flex flex-col"
           >
