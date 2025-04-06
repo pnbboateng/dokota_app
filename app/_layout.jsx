@@ -1,17 +1,39 @@
 import { Stack } from "expo-router";
 import "./global.css";
 import { Appearance } from "react-native";
-
+import { useRouter, useSegments } from "expo-router";
 import { Colors } from "@/constants/Colors";
+import { useState, useEffect } from "react";
 
 export default function RootLayout() {
   const colorScheme = Appearance.getColorScheme();
   const theme = colorScheme === "dark" ? Colors.dark : Colors.light;
+  const segments = useSegments();
+  const router = useRouter();
+
+  const [userRole, setUserRole] = useState(null);
+
+  useEffect(() => {
+    const currentSegment = segments.join("/");
+
+    // Don't redirect from get-started
+    if (!userRole && !currentSegment.startsWith("auth/get-started")) {
+      router.replace("/auth/get-started");
+    } else if (userRole === "doctor") {
+      router.replace("/(doctors_tabs)");
+    } else if (userRole === "patient") {
+      router.replace("/(patients_tabs)");
+    }
+  }, [userRole]);
 
   return (
     <Stack>
+      <Stack.Screen name="auth/get-started" options={{ headerShown: false }} />
+      <Stack.Screen name="auth/login" options={{ headerShown: false }} />
+      <Stack.Screen name="auth/signup" options={{ headerShown: false }} />
+
       <Stack.Screen
-        name="(tabs)"
+        name="(patients_tabs)"
         options={{
           title: "Home",
           headerShown: false,
@@ -83,6 +105,11 @@ export default function RootLayout() {
           headerShadowVisible: false,
           headerTitleAlign: "center",
         }}
+      />
+
+      <Stack.Screen
+        name="(doctors_tabs)"
+        options={{ title: "Home", headerShown: false }}
       />
     </Stack>
   );

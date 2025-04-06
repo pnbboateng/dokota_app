@@ -93,7 +93,7 @@ const Vitals = () => {
                 style={styles.icons}
                 source={
                   colorScheme === "dark"
-                    ? require("@/assets/images/blood-pressure_darkmode.png")
+                    ? require("@/assets/images/blood-pressure_darkmode2.png")
                     : require("@/assets/images/blood-pressure_lightmode.png")
                 }
                 resizeMode="contain"
