@@ -41,7 +41,7 @@ const GetStarted = () => {
       > */}
 
       <Video
-        source={require("@/assets/images/dokota_video2.mp4")}
+        source={require("@/assets/images/dokota_video3.mp4")}
         rate={1.0}
         volume={1.0}
         isMuted={false}
