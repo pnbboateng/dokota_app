@@ -5,12 +5,15 @@ import {
   View,
   Text,
   TextInput,
+  ImageBackground,
   Button,
   Alert,
   TouchableOpacity,
   StyleSheet,
+  Image,
 } from "react-native";
 import { StatusBar } from "expo-status-bar";
+import { Video } from "expo-av";
 import { useState } from "react";
 import { useRouter } from "expo-router";
 import { Colors } from "@/constants/Colors";
@@ -20,7 +23,7 @@ const GetStarted = () => {
   const theme = colorScheme === "dark" ? Colors.dark : Colors.light;
   const router = useRouter();
   return (
-    <SafeAreaView
+    <View
       style={{
         flex: 1,
         backgroundColor: theme.background,
@@ -30,27 +33,53 @@ const GetStarted = () => {
       className="h-screen "
     >
       <StatusBar style={colorScheme === "dark" ? "light" : "dark"} />
-      <View style={styles.container}>
-        <Text style={styles.title}>Welcome to Dokota</Text>
-        <Text style={styles.subtitle}>
-          Telemedicine made easy for the elderly
-        </Text>
+      {/* <ImageBackground
+        className="h-full w-full justify-center items-center"
+        source={require("@/assets/images/dokota_video.gif")}
+        style={styles.background}
+        resizeMode="cover"
+      > */}
 
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => router.replace("/auth/login")}
-        >
-          <Text style={styles.buttonText}>Login</Text>
-        </TouchableOpacity>
+      <Video
+        source={require("@/assets/images/dokota_video.mp4")}
+        rate={1.0}
+        volume={1.0}
+        isMuted={false}
+        resizeMode="cover"
+        shouldPlay
+        isLooping
+        style={styles.video}
+      />
 
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => router.push("/auth/signup")}
-        >
-          <Text style={styles.buttonText}>Sign Up</Text>
-        </TouchableOpacity>
+      <View style={styles.hero} className="">
+        <Text style={styles.heroText}>TELEMEDICINE FOR THE ELDERLY</Text>
       </View>
-    </SafeAreaView>
+      <View style={styles.container}>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => router.replace("/auth/signup")}
+        >
+          <Text style={styles.buttonText}>Get Started as a Patient</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => router.replace("/auth/signup")}
+        >
+          <Text style={styles.buttonText}>Get Started as a Doctor</Text>
+        </TouchableOpacity>
+
+        <Text className="mt-2" style={styles.buttonText}>
+          Already have an account?{" "}
+          <Text
+            onPress={() => router.replace("/auth/login")}
+            style={{ textDecorationLine: "underline" }}
+          >
+            Login
+          </Text>
+        </Text>
+      </View>
+      {/* </ImageBackground> */}
+    </View>
   );
 };
 
@@ -58,11 +87,13 @@ export default GetStarted;
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    position: "absolute",
+
+    bottom: 30,
+    left: 0,
+    right: 0,
     justifyContent: "center",
     alignItems: "center",
-    padding: 24,
-    backgroundColor: "#fef3c7",
   },
   title: {
     fontSize: 28,
@@ -77,14 +108,52 @@ const styles = StyleSheet.create({
     color: "#4c0519",
   },
   button: {
-    backgroundColor: "#4c0519",
+    backgroundColor: "#9f1239",
     padding: 12,
     paddingHorizontal: 24,
-    borderRadius: 10,
+    borderRadius: 30,
     marginTop: 12,
+    width: "80%",
+    alignItems: "center",
+    height: 50,
+    elevation: 7,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 4,
+    },
+    shadowOpacity: 0.3,
+    shadowRadius: 4.65,
   },
   buttonText: {
+    fontFamily: "roboto-bold",
     color: "#fff",
     fontSize: 16,
+    fontWeight: "bold",
+  },
+  doctor: {
+    width: "100%",
+    height: "100%",
+  },
+  video: {
+    position: "absolute",
+    left: 0,
+    right: 0,
+    top: 0,
+    bottom: 0,
+  },
+  hero: {
+    justifyContent: "center",
+    alignItems: "center",
+    flex: 1, // Takes up remaining vertical space
+    paddingHorizontal: 20,
+  },
+
+  heroText: {
+    fontFamily: "Roboto_400Regular",
+    fontSize: 18,
+    fontWeight: "bold",
+    color: "white",
+    textAlign: "center",
   },
 });
