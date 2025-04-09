@@ -3,7 +3,7 @@ const tintColorDark = "#cbd5e1";
 
 export const Colors = {
   light: {
-    mainText: "#f1f5f9",
+    mainText: "black",
     supportingText: "#cbd5e1",
     text: "#000000",
     background: "#e7e5e4",
