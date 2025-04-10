@@ -17,7 +17,7 @@ import {
   Platform,
   ScrollView,
 } from "react-native";
-
+import { FontAwesome } from "@expo/vector-icons";
 import { StatusBar } from "expo-status-bar";
 import { useState } from "react";
 import { useRouter } from "expo-router";
@@ -29,6 +29,8 @@ const Login = () => {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [passwordVisible, setPasswordVisible] = useState(false);
+
   const router = useRouter();
 
   const handleLogin = () => {
@@ -48,7 +50,7 @@ const Login = () => {
       <KeyboardAvoidingView
         style={{ flex: 1, backgroundColor: theme.containerBackground }}
         behavior={Platform.OS === "ios" ? "padding" : "height"}
-        keyboardVerticalOffset={Platform.OS === "ios" ? 30 : 0}
+        keyboardVerticalOffset={Platform.OS === "ios" ? 0 : 0}
       >
         <View
           style={{
@@ -82,7 +84,6 @@ const Login = () => {
               height: "60%",
               backgroundColor: theme.containerBackground,
               paddingHorizontal: 10,
-              elevation: 7,
 
               bottom: 0,
               left: 0,
@@ -114,6 +115,7 @@ const Login = () => {
               <Text className="mt-6" style={{ color: theme.text }}>
                 Email
               </Text>
+
               <TextInput
                 placeholder=""
                 className="w-full mt-2  p-3 rounded-lg "
@@ -129,22 +131,41 @@ const Login = () => {
                   color: theme.icon,
                 }}
               />
+
               <Text style={{ color: theme.text, marginTop: 16 }}>Password</Text>
-              <TextInput
-                placeholder=""
-                className="w-full mt-2  p-3 rounded-lg "
-                placeholderTextColor={theme.text}
-                value={password}
-                onChangeText={setPassword}
-                autoCapitalize="none"
-                style={{
-                  backgroundColor: theme.containerBackground,
-                  borderWidth: 1,
-                  width: "100%",
-                  borderColor: theme.text,
-                  color: theme.icon,
-                }}
-              />
+              <View style={{ width: "100%", position: "relative" }}>
+                <TextInput
+                  placeholder=""
+                  className="w-full mt-2  p-3 rounded-lg "
+                  placeholderTextColor={theme.text}
+                  secureTextEntry={!passwordVisible}
+                  value={password}
+                  onChangeText={setPassword}
+                  autoCapitalize="none"
+                  style={{
+                    backgroundColor: theme.containerBackground,
+                    borderWidth: 1,
+                    width: "100%",
+                    borderColor: theme.text,
+                    color: theme.icon,
+                  }}
+                />
+                <TouchableOpacity
+                  onPress={() => setPasswordVisible(!passwordVisible)}
+                  style={{
+                    position: "absolute",
+                    right: 10,
+                    top: "60%",
+                    transform: [{ translateY: -12 }],
+                  }}
+                >
+                  <FontAwesome
+                    name={passwordVisible ? "eye" : "eye-slash"}
+                    size={20}
+                    color={theme.text}
+                  />
+                </TouchableOpacity>
+              </View>
             </View>
             <View className="w-full mt-2 flex flex-row justify-end items-end">
               <Text

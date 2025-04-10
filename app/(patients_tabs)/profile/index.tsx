@@ -12,10 +12,13 @@ import {
   Platform,
   StyleSheet,
   Appearance,
+  Modal,
 } from "react-native";
+import { useState } from "react";
+
 import { useRouter } from "expo-router";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
-
+import { Picker } from "@react-native-picker/picker";
 import { StatusBar } from "expo-status-bar";
 import { Colors } from "@/constants/Colors";
 import Feather from "@expo/vector-icons/Feather";
@@ -61,10 +64,15 @@ const Profile = () => {
   const colorScheme = Appearance.getColorScheme();
   const theme = colorScheme === "dark" ? Colors.dark : Colors.light;
   const router = useRouter();
+  const [modalVisible, setModalVisible] = useState(false);
 
   const name = "Philip Boateng";
   const email = "nanaboatengphilip@gmail.com";
   const balance = 200;
+
+  const closeModal = () => {
+    setModalVisible(false);
+  };
   return (
     <SafeAreaView
       style={{
@@ -233,7 +241,7 @@ const Profile = () => {
           </TouchableOpacity>
         </View>
         <View className="mt-2 mx-2">
-          <TouchableOpacity className="">
+          <TouchableOpacity className="" onPress={() => setModalVisible(true)}>
             <View
               style={{
                 elevation: 7,
@@ -269,6 +277,64 @@ const Profile = () => {
             </View>
           </TouchableOpacity>
         </View>
+        <Modal visible={modalVisible} animationType="slide" transparent={true}>
+          <View
+            style={{
+              flex: 1,
+
+              justifyContent: "center",
+              alignItems: "center",
+              backgroundColor: "rgba(0,0,0,0.5)",
+            }}
+          >
+            <View
+              style={{
+                width: "70%",
+                height: 100,
+                backgroundColor: "white",
+                flexDirection: "column",
+                borderRadius: 10,
+              }}
+            >
+              <View className="w-full items-center p-4">
+                <Text className="font-bold">
+                  Are you sure you want to logout?
+                </Text>
+              </View>
+              <View className="flex w-full px-2 flex-row items-center justify-center gap-2">
+                <TouchableOpacity
+                  onPress={() => router.replace("/auth/get-started")}
+                  style={{
+                    backgroundColor: "#9f1239",
+                    padding: 10,
+                    borderRadius: 5,
+                    height: 40,
+                    width: "40%",
+                  }}
+                >
+                  <Text style={{ color: "#fff", textAlign: "center" }}>
+                    Logout
+                  </Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity
+                  onPress={closeModal}
+                  style={{
+                    backgroundColor: "#ddd",
+                    padding: 10,
+                    borderRadius: 5,
+                    height: 40,
+                    width: "40%",
+                  }}
+                >
+                  <Text style={{ color: "#000", textAlign: "center" }}>
+                    Cancel
+                  </Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+          </View>
+        </Modal>
       </ScrollView>
     </SafeAreaView>
   );
