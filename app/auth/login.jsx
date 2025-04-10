@@ -18,10 +18,12 @@ import {
   ScrollView,
 } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
+import Ionicons from "@expo/vector-icons/Ionicons";
 import { StatusBar } from "expo-status-bar";
 import { useState } from "react";
 import { useRouter } from "expo-router";
 import { Colors } from "@/constants/Colors";
+import { Route } from "expo-router/build/Route";
 
 const Login = () => {
   const colorScheme = Appearance.getColorScheme();
@@ -49,8 +51,8 @@ const Login = () => {
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <KeyboardAvoidingView
         style={{ flex: 1, backgroundColor: theme.containerBackground }}
-        behavior={Platform.OS === "ios" ? "padding" : "height"}
-        keyboardVerticalOffset={Platform.OS === "ios" ? 0 : 0}
+        behavior={Platform.OS === "ios" ? "padding" : "padding"}
+        // keyboardVerticalOffset={Platform.OS === "ios" ? 0 : 0, }
       >
         <View
           style={{
@@ -64,11 +66,22 @@ const Login = () => {
           <View className="h-[50%] w-full relative bg-rose-950">
             <Image
               style={styles.backgroundImage}
-              source={require("@/assets/images/loginDoctor1.jpg")}
+              source={require("@/assets/images/loginDoctor4.jpg")}
               resizeMode="cover"
-              blurRadius={10}
+              blurRadius={8}
             />
           </View>
+
+          <TouchableOpacity
+            onPress={() => router.replace("/auth/get-started")}
+            style={{ position: "absolute", top: 40, left: 10 }}
+          >
+            <Ionicons
+              name="chevron-back-circle-sharp"
+              size={40}
+              color="#262626"
+            />
+          </TouchableOpacity>
 
           <View
             style={{ backgroundColor: theme.background }}
@@ -122,7 +135,10 @@ const Login = () => {
                 placeholderTextColor={theme.text}
                 value={email}
                 onChangeText={setEmail}
+                textContentType="emailAddress"
+                keyboardType="email-address"
                 autoCapitalize="none"
+                autoCorrect={false}
                 style={{
                   backgroundColor: theme.containerBackground,
                   borderWidth: 1,
@@ -185,7 +201,7 @@ const Login = () => {
                 <Text style={styles.buttonText}>Login</Text>
               </TouchableOpacity>
               <Text
-                className="mt-2"
+                className="mt-3"
                 style={{
                   fontFamily: "roboto-bold",
                   color: theme.mainText,
