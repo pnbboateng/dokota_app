@@ -313,7 +313,7 @@ export default function Index() {
             </View>
             <View className="items-center justify-center mt-11">
               <Text style={{ color: theme.icon }} className="font-bold">
-                Consultation
+                Patients
               </Text>
             </View>
           </TouchableOpacity>

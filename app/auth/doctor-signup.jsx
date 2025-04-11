@@ -13,7 +13,7 @@ import { useState } from "react";
 import { useRouter } from "expo-router";
 import { Colors } from "@/constants/Colors";
 
-const Signup = () => {
+const DoctorSignup = () => {
   const colorScheme = Appearance.getColorScheme();
   const theme = colorScheme === "dark" ? Colors.dark : Colors.light;
 
@@ -69,4 +69,4 @@ const Signup = () => {
   );
 };
 
-export default Signup;
+export default DoctorSignup;

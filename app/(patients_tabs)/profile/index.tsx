@@ -277,7 +277,7 @@ const Profile = () => {
             </View>
           </TouchableOpacity>
         </View>
-        <Modal visible={modalVisible} animationType="slide" transparent={true}>
+        <Modal visible={modalVisible} transparent={true}>
           <View
             style={{
               flex: 1,

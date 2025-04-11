@@ -6,6 +6,8 @@ import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import { useFonts } from "expo-font";
 import { Appearance } from "react-native";
+import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
+import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 
 import { Colors } from "@/constants/Colors";
 
@@ -90,9 +92,9 @@ const _Layout = () => {
       />
 
       <Tabs.Screen
-        name="sos"
+        name="earnings"
         options={{
-          title: "SOS",
+          title: "Earnings",
           headerShown: false,
           tabBarLabel: ({ focused }) => (
             <View>
@@ -102,13 +104,13 @@ const _Layout = () => {
                   color: focused ? theme.mainThemeIcons : theme.tint,
                 }}
               >
-                SOS
+                Earnings
               </Text>
             </View>
           ),
           tabBarIcon: ({ focused }) => (
-            <MaterialIcons
-              name="emergency-share"
+            <MaterialCommunityIcons
+              name="finance"
               size={24}
               color={focused ? theme.mainThemeIcons : theme.tint}
             />

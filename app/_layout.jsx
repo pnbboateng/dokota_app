@@ -33,7 +33,15 @@ export default function RootLayout() {
         options={{ headerShown: false, animation: "slide_from_left" }}
       />
       <Stack.Screen name="auth/login" options={{ headerShown: false }} />
-      <Stack.Screen name="auth/signup" options={{ headerShown: false }} />
+      <Stack.Screen
+        name="auth/patient-signup"
+        options={{ headerShown: false }}
+      />
+
+      <Stack.Screen
+        name="auth/doctor-signup"
+        options={{ headerShown: false }}
+      />
 
       <Stack.Screen
         name="(patients_tabs)"

@@ -25,7 +25,7 @@ import { useRouter } from "expo-router";
 import { Colors } from "@/constants/Colors";
 import { Route } from "expo-router/build/Route";
 
-const Login = () => {
+const PatientSignup = () => {
   const colorScheme = Appearance.getColorScheme();
   const theme = colorScheme === "dark" ? Colors.dark : Colors.light;
 
@@ -35,7 +35,7 @@ const Login = () => {
 
   const router = useRouter();
 
-  const handleLogin = () => {
+  const handleSignup = () => {
     if (email === "nanaboatengphilip@gmail.com" && password === "Phil123") {
       router.replace("/(doctors_tabs)"); // doctor view
     } else if (
@@ -94,7 +94,7 @@ const Login = () => {
               position: "absolute",
               borderTopRightRadius: 20,
               borderTopLeftRadius: 20,
-              height: "60%",
+              height: "70%",
               backgroundColor: theme.containerBackground,
               paddingHorizontal: 10,
 
@@ -118,10 +118,10 @@ const Login = () => {
                 className="text-2xl font-bold"
                 style={{ fontFamily: "Poppins-Bold", color: theme.mainText }}
               >
-                Welcome back!
+                Welcome!
               </Text>
               <Text className="mt-2" style={{ color: theme.text }}>
-                To get started, sign in to your account
+                To get started as a patient, sign up
               </Text>
             </View>
             <View className="w-full">
@@ -182,23 +182,47 @@ const Login = () => {
                   />
                 </TouchableOpacity>
               </View>
-            </View>
-            <View className="w-full mt-2 flex flex-row justify-end items-end">
-              <Text
-                style={{
-                  fontFamily: "roboto-bold",
-                  color: theme.mainText,
-                  fontSize: 16,
-                  fontWeight: "bold",
-                  textDecorationLine: "underline",
-                }}
-              >
-                Forgot password
+              <Text style={{ color: theme.text, marginTop: 16 }}>
+                Confirm Password
               </Text>
+              <View style={{ width: "100%", position: "relative" }}>
+                <TextInput
+                  placeholder=""
+                  className="w-full mt-2  p-3 rounded-lg "
+                  placeholderTextColor={theme.text}
+                  secureTextEntry={!passwordVisible}
+                  value={password}
+                  onChangeText={setPassword}
+                  autoCapitalize="none"
+                  style={{
+                    backgroundColor: theme.containerBackground,
+                    borderWidth: 1,
+                    width: "100%",
+                    borderColor: theme.text,
+                    color: theme.icon,
+                  }}
+                />
+                <TouchableOpacity
+                  onPress={() => setPasswordVisible(!passwordVisible)}
+                  style={{
+                    position: "absolute",
+                    right: 10,
+                    top: "60%",
+                    transform: [{ translateY: -12 }],
+                  }}
+                >
+                  <FontAwesome
+                    name={passwordVisible ? "eye" : "eye-slash"}
+                    size={20}
+                    color={theme.text}
+                  />
+                </TouchableOpacity>
+              </View>
             </View>
-            <View className="w-full mt-6 items-center">
-              <TouchableOpacity style={styles.button} onPress={handleLogin}>
-                <Text style={styles.buttonText}>Login</Text>
+
+            <View className="w-full mt-8 items-center justify-end">
+              <TouchableOpacity style={styles.button} onPress={handleSignup}>
+                <Text style={styles.buttonText}>Signup</Text>
               </TouchableOpacity>
               <Text
                 className="mt-3"
@@ -209,12 +233,12 @@ const Login = () => {
                   fontWeight: "bold",
                 }}
               >
-                Don't have an account?{" "}
+                Already have an account?{" "}
                 <Text
-                  onPress={() => router.replace("/auth/get-started")}
+                  onPress={() => router.replace("/auth/login")}
                   style={{ textDecorationLine: "underline" }}
                 >
-                  Signup
+                  Login
                 </Text>
               </Text>
             </View>
@@ -225,7 +249,7 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default PatientSignup;
 
 const styles = StyleSheet.create({
   tinyLogo: {

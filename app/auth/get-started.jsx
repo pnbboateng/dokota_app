@@ -57,13 +57,13 @@ const GetStarted = () => {
       <View style={styles.container}>
         <TouchableOpacity
           style={styles.button}
-          onPress={() => router.replace("/auth/signup")}
+          onPress={() => router.replace("/auth/patient-signup")}
         >
           <Text style={styles.buttonText}>Get Started as a Patient</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.button}
-          onPress={() => router.replace("/auth/signup")}
+          onPress={() => router.replace("/auth/doctor-signup")}
         >
           <Text style={styles.buttonText}>Get Started as a Doctor</Text>
         </TouchableOpacity>
